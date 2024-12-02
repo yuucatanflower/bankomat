@@ -248,7 +248,7 @@ TMoney TMoney::operator*(int multiplier) const
 
 bool TMoney::operator==(const TMoney &other) const
 {
-//TODO купюри і монети
+    // TODO скористатися циклом для порівняння купюр та монет (this map<int, int> bills == other map<int, int> bills)
 
     return *this == other;
 }

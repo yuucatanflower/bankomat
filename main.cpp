@@ -124,16 +124,21 @@ int main()
 //         cerr << e.what() << '\n';
 //     }
 
+    try{
     TMoney quotient = money1 / 2;
     cout << "Money1 divided by 2: " << quotient << endl;
+    }
+    catch (const exception &e){
+        std::cerr<< e.what() << std::endl;
 
+    }
     cout << "Comparison results:" << endl;
-    cout << "money1 == money2: " << (money1 == money2 ? "true" : "false") << endl;
-    cout << "money1 != money2: " << (money1 != money2 ? "true" : "false") << endl;
-    cout << "money1 < money2: " << (money1 < money2 ? "true" : "false") << endl;
-    cout << "money1 <= money2: " << (money1 <= money2 ? "true" : "false") << endl;
-    cout << "money1 > money2: " << (money1 > money2 ? "true" : "false") << endl;
-    cout << "money1 >= money2: " << (money1 >= money2 ? "true" : "false") << endl;
+    // cout << "money1 == money2: " << (money1 == money2 ? "true" : "false") << endl;
+    // cout << "money1 != money2: " << (money1 != money2 ? "true" : "false") << endl;
+    // cout << "money1 < money2: " << (money1 < money2 ? "true" : "false") << endl;
+    // cout << "money1 <= money2: " << (money1 <= money2 ? "true" : "false") << endl;
+    // cout << "money1 > money2: " << (money1 > money2 ? "true" : "false") << endl;
+    // cout << "money1 >= money2: " << (money1 >= money2 ? "true" : "false") << endl;
 
     std::cout << "Babay!"<< std::endl;
 
