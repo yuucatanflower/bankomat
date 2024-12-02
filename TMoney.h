@@ -18,18 +18,12 @@ private:
 public:
     TMoney();
     TMoney(const std::map<int, int> &initialBills, const std::map<int, int> &initialCoins);
-    void printBillsAndCoins() const;
+    void printBillsAndCoins() const; //якщо не використовуєш, то -- видали
     //?? printBills
     //?? printCoins
 
     int totalAmount() const;
 
-    // WTF ??
-    int totalCoins() const;
-
-    // Accessors for billValues and coinValues
-    // static const std::vector<int>& getBillValues() { return billValues; }
-    // static const std::vector<double>& getCoinValues() { return coinValues; }
 
     TMoney convertToTMoney(int amount);
     // Operator overloads
