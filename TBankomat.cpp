@@ -1,63 +1,63 @@
-// #include <iostream>
-// #include <vector>
-// #include "TMoney.h"
-// #include "TBankomat.h"
-// #include <string>
-// #include <stdexcept>
-// #include <algorithm>
+#include <iostream>
+#include <vector>
+#include "TMoney.h"
+#include "TBankomat.h"
+#include <string>
+#include <stdexcept>
+#include <algorithm>
 
-// using namespace std;
+using namespace std;
 
-// // Default constructor
-// TBankomat::TBankomat() : id("00000"), current_sum(0), min_withdraw(0), max_withdraw(0) {}
+// Default constructor
+TBankomat::TBankomat() : id("00000"), mon({}), min_withdraw(0), max_withdraw(0) {}
 
-// // Constructor with ID
-// TBankomat::TBankomat(string id) : id(id), current_sum(0), min_withdraw(0), max_withdraw(0) {
-//     if (id.size() != 5) {
-//         throw runtime_error("Wrong ID");
-//     }
-// }
+// Constructor with ID
+TBankomat::TBankomat(string id) : id(id), mon({}), min_withdraw(0), max_withdraw(0) {
+    if (id.size() != 5) {
+        throw runtime_error("Wrong ID");
+    }
+}
 
-// // Constructor with ID and current sum
-// TBankomat::TBankomat(string id, int current_sum) : id(id), current_sum(current_sum), min_withdraw(0), max_withdraw(current_sum) {
-//     if (id.size() != 5) {
-//         throw runtime_error("Wrong ID");
-//     }
-//     if (current_sum < 0) {
-//         throw runtime_error("Negative value");
-//     }
-// }
+// Constructor with ID and current sum
+TBankomat::TBankomat(string id, TMoney mon) : id(id), mon(mon), min_withdraw(0), max_withdraw(mon.totalAmount()) {
+    if (id.size() != 5) {
+        throw runtime_error("Wrong ID");
+    }
+    if (mon.totalAmount() < 0) {
+        throw runtime_error("Negative value");
+    }
+}
 
 // // Constructor with ID, current sum, and min/max withdraw values
-// TBankomat::TBankomat(string id, int current_sum, int min_withdraw) : id(id), current_sum(current_sum), min_withdraw(min_withdraw), max_withdraw(current_sum) {
-//     if (id.size() != 5) {
-//         throw runtime_error("Wrong ID");
-//     }
-//     if (current_sum < 0) {
-//         throw runtime_error("Negative value");
-//     }
-// }
+TBankomat::TBankomat(string id, TMoney mon, int min_withdraw) : id(id), mon(mon), min_withdraw(min_withdraw), max_withdraw(mon.totalAmount()) {
+    if (id.size() != 5) {
+        throw runtime_error("Wrong ID");
+    }
+    if (mon.totalAmount() < 0) {
+        throw runtime_error("Negative value");
+    }
+}
 
-// TBankomat::TBankomat(string id, int current_sum, int min_withdraw, int max_withdraw) : id(id), current_sum(current_sum), min_withdraw(min_withdraw), max_withdraw(max_withdraw) {
-//     if (id.size() != 5) {
-//         throw runtime_error("Wrong ID");
-//     }
-//     if (current_sum < 0) {
-//         throw runtime_error("Negative value");
-//     }
-// }
+TBankomat::TBankomat(string id, TMoney mon, int min_withdraw, int max_withdraw) : id(id), mon(mon), min_withdraw(min_withdraw), max_withdraw(max_withdraw) {
+    if (id.size() != 5) {
+        throw runtime_error("Wrong ID");
+    }
+    if (mon.totalAmount() < 0) {
+        throw runtime_error("Negative value");
+    }
+}
 
-// // Set current sum
-// void TBankomat::set_current(int sum) {
-//     current_sum = sum;
-// }
+// Set current sum
+void TBankomat::set_current(TMoney setmon) {
+    mon = setmon;
+}
 
 
 
 
 // //withdraw tmoney tmoney
 // void TBankomat::withdraw(TMoney& balance, TMoney& withdraw_amount){
-//     if(withdraw_amount.totalAmount() > current_sum){throw runtime_error("Withdrawal amount exceeds available funds");}
+//     if(withdraw_amount.totalAmount() > mon.totalAmount()){throw runtime_error("Withdrawal amount exceeds available funds");}
 //     if (withdraw_amount.totalAmount() > balance.totalAmount()) {throw runtime_error("Withdrawal amount exceeds balance");}
 //     if (withdraw_amount.totalAmount() < TMoney().totalAmount() ) {throw runtime_error("Withdrawal amount is negative");}
 //     if (withdraw_amount.totalAmount() > max_withdraw) {throw runtime_error("Withdrawal amount exceeds maximum withdrawal");}

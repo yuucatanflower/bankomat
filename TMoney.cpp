@@ -249,7 +249,7 @@ TMoney TMoney::operator*(int multiplier) const
 bool TMoney::operator==(const TMoney &other) const
 {
     // TODO скористатися циклом для порівняння купюр та монет (this map<int, int> bills == other map<int, int> bills)
-    // а чого цикл?
+    // а чого цикл? працює вот таке
     if(bills != other.bills){return false;}
     if(coins != other.coins){return false;}
     return true;
@@ -258,7 +258,9 @@ bool TMoney::operator==(const TMoney &other) const
 
 bool TMoney::operator!=(const TMoney &other) const
 {
-    return !(*this == other);
+    if(bills == other.bills){return false;}
+    if(coins == other.coins){return false;}
+    return true;
 }
 
 bool TMoney::operator<(const TMoney &other) const
@@ -291,7 +293,7 @@ std::ostream &operator<<(std::ostream &o, const TMoney &money)
     o << "Total amount: " << wholeUAH << ","
       << std::setw(2) << std::setfill('0') << cents << " UAH\n";
 
-    // 
+    // bills breakdown
     o << "  Bills:\n";
     for (const auto &bill : money.bills)
     {
