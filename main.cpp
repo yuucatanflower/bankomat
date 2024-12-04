@@ -1,4 +1,5 @@
 #include "TMoney.h"
+#include "TBankomat.h"
 #include <iostream>
 // #include "TBankomat.h"
 #include <vector>
@@ -152,7 +153,16 @@ int main()
     cout << "money1 > money2: " << (money1 > money2 ? "true" : "false") << endl;
     cout << "money1 >= money2: " << (money1 >= money2 ? "true" : "false") << endl;
 
-    std::cout << "Babay!"<< std::endl;
+    cout << "Babay!"<< std::endl;
+
+    TBankomat ebank;
+    
+    TBankomat b1("09845");
+    TBankomat b2("01232", moneytest);
+     TBankomat b3("99999", money33, 1);
+    TBankomat b4("19929", moneytest2, 1,moneytest2.totalAmount() );
+
+    cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << endl;
 
     return 0;
 }

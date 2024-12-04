@@ -55,28 +55,28 @@ void TBankomat::set_current(TMoney setmon) {
 
 
 
-// //withdraw tmoney tmoney
-// void TBankomat::withdraw(TMoney& balance, TMoney& withdraw_amount){
-//     if(withdraw_amount.totalAmount() > mon.totalAmount()){throw runtime_error("Withdrawal amount exceeds available funds");}
-//     if (withdraw_amount.totalAmount() > balance.totalAmount()) {throw runtime_error("Withdrawal amount exceeds balance");}
-//     if (withdraw_amount.totalAmount() < TMoney().totalAmount() ) {throw runtime_error("Withdrawal amount is negative");}
-//     if (withdraw_amount.totalAmount() > max_withdraw) {throw runtime_error("Withdrawal amount exceeds maximum withdrawal");}
-//     if (withdraw_amount.totalAmount() < min_withdraw) {throw runtime_error("Withdrawal amount is less than minimum withdrawal");} 
-//     balance = balance - withdraw_amount;
-//     current_sum = current_sum - withdraw_amount.totalAmount();
-// }
-// //witdraw tmoney int
-// void TBankomat::withdraw(TMoney& balance, int withdr_am) {
+//withdraw tmoney tmoney
+void TBankomat::withdraw(TMoney& balance, TMoney& withdraw_amount){
+    if(withdraw_amount.totalAmount() > mon.totalAmount()){throw runtime_error("Withdrawal amount exceeds available funds");}
+    if (withdraw_amount.totalAmount() > balance.totalAmount()) {throw runtime_error("Withdrawal amount exceeds balance");}
+    if (withdraw_amount.totalAmount() < TMoney().totalAmount() ) {throw runtime_error("Withdrawal amount is negative");}
+    if (withdraw_amount.totalAmount() > max_withdraw) {throw runtime_error("Withdrawal amount exceeds maximum withdrawal");}
+    if (withdraw_amount.totalAmount() < min_withdraw) {throw runtime_error("Withdrawal amount is less than minimum withdrawal");} 
+    balance = balance - withdraw_amount;
+    mon = mon - withdraw_amount;
+}
+//witdraw tmoney int
+void TBankomat::withdraw(TMoney& balance, int withdr_am) {
     
-//     TMoney withdraw_amount_tmoney = convertToTMoney(withdr_am);
+    TMoney withdraw_amount_tmoney = convertToTMoney(withdr_am);
 
-//     withdraw(balance, withdraw_amount_tmoney);
-// }
+    withdraw(balance, withdraw_amount_tmoney);
+}
 
-// // Output operator
-// ostream& operator<<(ostream& o ,const TBankomat& bankomat){ o<<"ID: " << bankomat.id<< endl ; 
-// o<<"Money Available: " << bankomat.current_sum << endl; 
+// Output operator
+ostream& operator<<(ostream& o ,const TBankomat& bankomat){ o<<"ID: " << bankomat.id<< endl ; 
+o<<"Money Available: " << bankomat.mon << endl; 
 // o<<"Min. withdrawal value: " << bankomat.min_withdraw << endl; 
 // o<<"Max. withdrawal value: " << bankomat.max_withdraw << endl; 
-// // o<< "Money: " << bankomat.mon << endl; 
-// return o; }
+// o<< "Money: " << bankomat.mon << endl; 
+return o; }
