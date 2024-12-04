@@ -134,6 +134,18 @@ int main()
     }
     cout << "Comparison results:" << endl;
     cout << "money1 == money2: " << (money1 == money2 ? "true" : "false") << endl;
+
+    TMoney money33({{500, 1}, {100, 1}}, {{50, 1} });
+    TMoney money22({{500, 1}, {100, 1}}, {{25, 2}});
+
+    cout << "money33 == money22: " << (money33 == money22 ? "true" : "false") << endl;
+
+     TMoney moneytest({{500, 1}, {100, 1}}, {{25, 2} });
+    TMoney moneytest2({{500, 1}, {100, 1}}, {{25, 2}});
+
+    cout << "moneytest == moneytest2: " << (moneytest == moneytest2 ? "true" : "false") << endl;
+
+
     cout << "money1 != money2: " << (money1 != money2 ? "true" : "false") << endl;
     cout << "money1 < money2: " << (money1 < money2 ? "true" : "false") << endl;
     cout << "money1 <= money2: " << (money1 <= money2 ? "true" : "false") << endl;
