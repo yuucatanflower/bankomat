@@ -153,7 +153,7 @@ int main()
     cout << "money1 > money2: " << (money1 > money2 ? "true" : "false") << endl;
     cout << "money1 >= money2: " << (money1 >= money2 ? "true" : "false") << endl;
 
-    cout << "Babay!"<< std::endl;
+    
 
     TBankomat ebank;
     
@@ -164,5 +164,6 @@ int main()
 
     cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << endl;
 
+    cout << "Babay!" << std::endl;
     return 0;
 }
