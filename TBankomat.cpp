@@ -52,11 +52,47 @@ void TBankomat::set_current(TMoney setmon) {
     mon = setmon;
 }
 
+void TBankomat::get_cash(){
 
+    int b{0},c{0};
+    TMoney recive_money;
 
+    std::cout << " Input bills: ";
+    std::cin >> b;
 
-//withdraw tmoney tmoney
-void TBankomat::withdraw(TMoney& balance, TMoney& withdraw_amount){
+    if (b * 100 > mon.totalAmount()){
+        throw runtime_error("Too much");
+    }
+
+    for (const auto &bill : mon.get_bills())
+    {
+        if (bill.first == b && bill.second > 0) {
+            std::cout << "The bill is present!!\n"; 
+            std::cout << bill.first << "--" << bill.second << std::endl;
+            recive_money.increment_bill(bill.first, 1);
+            //TODO mon.decrement_bill(bill.first, 1)
+
+            // TMoney tmp({{500,1},{}});
+            // TMoney res = recive_money + tmp;
+
+            //TODO зменшити кількість купюр на 1
+
+            // std::cout << tmp <<std::endl;
+        }
+        
+       
+    }
+
+    // std::cout << " Input coins: ";
+    // std::cin >> c;
+
+    std::cout << "Recive your cash \n" << recive_money 
+    << std::endl;
+}
+
+    // withdraw tmoney tmoney
+    void TBankomat::withdraw(TMoney &balance, TMoney &withdraw_amount)
+{
     if(withdraw_amount.totalAmount() > mon.totalAmount()){throw runtime_error("Withdrawal amount exceeds available funds");}
     if (withdraw_amount.totalAmount() > balance.totalAmount()) {throw runtime_error("Withdrawal amount exceeds balance");}
     if (withdraw_amount.totalAmount() < TMoney().totalAmount() ) {throw runtime_error("Withdrawal amount is negative");}

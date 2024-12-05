@@ -164,6 +164,13 @@ int main()
 
     cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << endl;
 
+try{
+    b4.get_cash();
+}
+catch (const exception &e)
+{
+    std::cerr << e.what() << std::endl;
+}
     cout << "Babay!" << std::endl;
     return 0;
 }

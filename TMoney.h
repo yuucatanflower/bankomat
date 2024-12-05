@@ -22,10 +22,14 @@ public:
     //?? printBills
     //?? printCoins
 
+    // інкремент курюр, монет
+    void increment_bill(int nominal, int count);
+
     int totalAmount() const;
 
+    std::map<int, int> get_bills() const;
 
-    TMoney convertToTMoney(int amount);
+        TMoney convertToTMoney(int amount);
     // Operator overloads
     TMoney operator+(const TMoney &other) const;
     TMoney operator-(const TMoney &other) const;
