@@ -70,18 +70,41 @@ void TBankomat::get_cash(){
             std::cout << "The bill is present!!\n"; 
             std::cout << bill.first << "--" << bill.second << std::endl;
             recive_money.increment_bill(bill.first, 1);
-            //TODO mon.decrement_bill(bill.first, 1)
+            mon.decrement_bill(bill.first, 1);
 
-            // TMoney tmp({{500,1},{}});
-            // TMoney res = recive_money + tmp;
+           std::cout << "Updated ATM bills:\n";
 
-            //TODO зменшити кількість купюр на 1
+            for (const auto &updated_bill : mon.get_bills()) {
+                std::cout << "Denomination: " << updated_bill.first 
+                          << ", Count: " << updated_bill.second << '\n';
+            }
 
-            // std::cout << tmp <<std::endl;
+            break;
         }
         
        
     }
+
+    // for (const auto &bill : mon.get_coins())
+    // {
+    //     if (bill.first == b && bill.second > 0) {
+    //         std::cout << "The bill is present!!\n"; 
+    //         std::cout << bill.first << "--" << bill.second << std::endl;
+    //         recive_money.increment_bill(bill.first, 1);
+    //         mon.decrement_bill(bill.first, 1);
+
+    //        std::cout << "Updated ATM bills:\n";
+           
+    //         for (const auto &updated_bill : mon.get_bills()) {
+    //             std::cout << "Denomination: " << updated_bill.first 
+    //                       << ", Count: " << updated_bill.second << '\n';
+    //         }
+
+    //         break;
+    //     }
+        
+       
+    // }
 
     // std::cout << " Input coins: ";
     // std::cin >> c;

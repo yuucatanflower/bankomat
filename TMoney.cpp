@@ -104,6 +104,16 @@ void TMoney::increment_bill(int nominal, int count){
     bills[nominal] += count;
 };
 
+void TMoney::decrement_bill(int nominal, int count){
+
+    if (count < 0)
+    {
+        throw std::invalid_argument("Кількість має бути не від'ємною");
+    }
+
+    bills[nominal] -= count;
+};
+
 TMoney TMoney::convertToTMoney(int amount)
 {
 
