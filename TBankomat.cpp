@@ -64,26 +64,58 @@ void TBankomat::get_cash(){
         throw runtime_error("Too much");
     }
 
-    for (const auto &bill : mon.get_bills())
+    while (recive_money.totalAmount() < b*100)
     {
-        if (bill.first == b && bill.second > 0) {
-            std::cout << "The bill is present!!\n"; 
-            std::cout << bill.first << "--" << bill.second << std::endl;
-            recive_money.increment_bill(bill.first, 1);
-            mon.decrement_bill(bill.first, 1);
+        for (auto it = billValues.rbegin(); it != billValues.rend(); ++it)
+        {
+            std::cout << it->first << " -- " << it->second << std::endl;
 
-           std::cout << "Updated ATM bills:\n";
+            for (const auto bill: mon.get_bills()){
 
-            for (const auto &updated_bill : mon.get_bills()) {
-                std::cout << "Denomination: " << updated_bill.first 
-                          << ", Count: " << updated_bill.second << '\n';
+
+//TODO подумати над тим, щоб банкомат видавав усі 1000, усі 500, ..
+                if (it->first == bill.first && bill.second > 0 && bill.first < b)
+                {
+                        std::cout << "The bill is present!!\n";
+                        std::cout << bill.first << "--" << bill.second << std::endl;
+                        recive_money.increment_bill(bill.first, 1);
+                        mon.decrement_bill(bill.first, 1);
+
+                        // std::cout << "Updated ATM bills:\n";
+
+                        // for (const auto &updated_bill : mon.get_bills())
+                        // {
+                        //     std::cout << "Denomination: " << updated_bill.first
+                        //               << ", Count: " << updated_bill.second << '\n';
+                        // }
+
+                        break;
+                }
             }
-
-            break;
-        }
         
-       
+
+            // if (bill.second > 0 && bill.first < b)
+            // {
+            //     std::cout << "The bill is present!!\n";
+            //     std::cout << bill.first << "--" << bill.second << std::endl;
+            //     recive_money.increment_bill(bill.first, 1);
+            //     mon.decrement_bill(bill.first, 1);
+
+            //     // std::cout << "Updated ATM bills:\n";
+
+            //     // for (const auto &updated_bill : mon.get_bills())
+            //     // {
+            //     //     std::cout << "Denomination: " << updated_bill.first
+            //     //               << ", Count: " << updated_bill.second << '\n';
+            //     // }
+
+            //     break;
+            // }
+        }
     }
+    
+
+    
 
     // for (const auto &bill : mon.get_coins())
     // {

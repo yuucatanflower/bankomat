@@ -143,6 +143,7 @@ int main()
 
      TMoney moneytest({{500, 1}, {100, 1}}, {{25, 2} });
     TMoney moneytest2({{500, 1}, {100, 1}}, {{25, 2}});
+    TMoney moneytest3({{500, 4}, {100, 15},{1000,1},{200,10},{50,25}}, {{25, 2}});
 
     cout << "moneytest == moneytest2: " << (moneytest == moneytest2 ? "true" : "false") << endl;
 
@@ -161,11 +162,12 @@ int main()
     TBankomat b2("01232", moneytest);
      TBankomat b3("99999", money33, 1);
     TBankomat b4("19929", moneytest2, 1,moneytest2.totalAmount() );
+    TBankomat b5("77777", moneytest3);
 
-    cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << endl;
+    cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << b5 << endl;
 
 try{
-    b4.get_cash();
+    b5.get_cash();
 }
 catch (const exception &e)
 {
