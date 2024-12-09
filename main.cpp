@@ -143,7 +143,7 @@ int main()
 
      TMoney moneytest({{500, 1}, {100, 1}}, {{25, 2} });
     TMoney moneytest2({{500, 1}, {100, 1}}, {{25, 2}});
-    TMoney moneytest3({{500, 4}, {100, 15},{1000,1},{200,10},{50,25}}, {{25, 2}});
+    TMoney moneytest3({{1000, 4}, {500, 6},{100,1},{200,10},{50,5}}, {{25, 2}});
 
     cout << "moneytest == moneytest2: " << (moneytest == moneytest2 ? "true" : "false") << endl;
 

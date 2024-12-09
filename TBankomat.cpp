@@ -73,21 +73,26 @@ void TBankomat::get_cash(){
             for (const auto bill: mon.get_bills()){
 
 
-//TODO подумати над тим, щоб банкомат видавав усі 1000, усі 500, ..
-                if (it->first == bill.first && bill.second > 0 && bill.first < b)
+//TODO подумати над тим, щоб банкомат видавав усі 1000, усі 500, .. 
+                if (it->first == bill.first && bill.second > 0 && bill.first <= b*100)
                 {
-                        std::cout << "The bill is present!!\n";
+                        // std::cout << "The bill is present!!\n";
                         std::cout << bill.first << "--" << bill.second << std::endl;
+
                         recive_money.increment_bill(bill.first, 1);
                         mon.decrement_bill(bill.first, 1);
 
-                        // std::cout << "Updated ATM bills:\n";
+                        b -= bill.first;
 
-                        // for (const auto &updated_bill : mon.get_bills())
-                        // {
-                        //     std::cout << "Denomination: " << updated_bill.first
-                        //               << ", Count: " << updated_bill.second << '\n';
-                        // }
+
+
+                        std::cout << "Updated ATM bills:\n";
+
+                        for (const auto &updated_bill : mon.get_bills())
+                        {
+                            std::cout << "Denomination: " << updated_bill.first
+                                      << ", Count: " << updated_bill.second << '\n';
+                        }
 
                         break;
                 }
