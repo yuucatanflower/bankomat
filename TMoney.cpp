@@ -61,6 +61,12 @@ std::map<int, int> TMoney::get_bills() const{
     return bills;
 };
 
+std::map<int, int> TMoney::get_coins() const
+{
+
+    return coins;
+};
+
 void TMoney::printBillsAndCoins() const
 {
     std::cout << "Current bills:\n";
@@ -104,6 +110,17 @@ void TMoney::increment_bill(int nominal, int count){
     bills[nominal] += count;
 };
 
+void TMoney::increment_coin(int nominal, int count)
+{
+
+    if (count < 0)
+    {
+        throw std::invalid_argument("Кількість має бути не від'ємною");
+    }
+
+    coins[nominal] += count;
+};
+
 void TMoney::decrement_bill(int nominal, int count){
 
     if (count < 0)
@@ -112,6 +129,17 @@ void TMoney::decrement_bill(int nominal, int count){
     }
 
     bills[nominal] -= count;
+};
+
+void TMoney::decrement_coin(int nominal, int count)
+{
+
+    if (count < 0)
+    {
+        throw std::invalid_argument("Кількість має бути не від'ємною");
+    }
+
+    coins[nominal] -= count;
 };
 
 TMoney TMoney::convertToTMoney(int amount)

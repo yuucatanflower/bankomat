@@ -53,98 +53,63 @@ void TBankomat::set_current(TMoney setmon) {
 }
 
 void TBankomat::get_cash(){
-
+    float des_am{0};
     int b{0},c{0};
     TMoney recive_money;
 
-    std::cout << " Input bills: ";
-    std::cin >> b;
+    std::cout << " Input desired amount (xxx.yy) :  ";
+    std::cin >> des_am;
 
-    if (b * 100 > mon.totalAmount()){
+    b = des_am * 100;
+    if (b > mon.totalAmount()){
         throw runtime_error("Too much");
     }
 
-    while (recive_money.totalAmount() < b*100)
+    while (recive_money.totalAmount() < b)
     {
         for (auto it = billValues.rbegin(); it != billValues.rend(); ++it)
         {
-            std::cout << it->first << " -- " << it->second << std::endl;
-
             for (const auto bill: mon.get_bills()){
-
-
-//TODO подумати над тим, щоб банкомат видавав усі 1000, усі 500, .. 
-                if (it->first == bill.first && bill.second > 0 && bill.first <= b*100)
+                int bill_count{0};
+                
+                while (it->first == bill.first && bill.second - bill_count > 0 && bill.first*100 <= b)
                 {
-                        // std::cout << "The bill is present!!\n";
-                        std::cout << bill.first << "--" << bill.second << std::endl;
+                    recive_money.increment_bill(bill.first, 1);
+                    mon.decrement_bill(bill.first, 1);
+                    bill_count += 1;
+                    b -= bill.first*100;
 
-                        recive_money.increment_bill(bill.first, 1);
-                        mon.decrement_bill(bill.first, 1);
-
-                        b -= bill.first;
-
-
-
-                        std::cout << "Updated ATM bills:\n";
-
-                        for (const auto &updated_bill : mon.get_bills())
-                        {
-                            std::cout << "Denomination: " << updated_bill.first
-                                      << ", Count: " << updated_bill.second << '\n';
-                        }
-
-                        break;
                 }
             }
         
 
-            // if (bill.second > 0 && bill.first < b)
-            // {
-            //     std::cout << "The bill is present!!\n";
-            //     std::cout << bill.first << "--" << bill.second << std::endl;
-            //     recive_money.increment_bill(bill.first, 1);
-            //     mon.decrement_bill(bill.first, 1);
 
-            //     // std::cout << "Updated ATM bills:\n";
-
-            //     // for (const auto &updated_bill : mon.get_bills())
-            //     // {
-            //     //     std::cout << "Denomination: " << updated_bill.first
-            //     //               << ", Count: " << updated_bill.second << '\n';
-            //     // }
-
-            //     break;
-            // }
         }
+  
+        std::cout << "Rest after bills: " << b << std::endl;
+
+        for (auto it = coinValues.rbegin(); it != coinValues.rend(); ++it)
+        {
+
+            for (const auto coin : mon.get_coins())
+            {
+                int coin_count{0};
+
+                while (it->first == coin.first && coin.second - coin_count > 0 && coin.first <= b)
+                {
+                    recive_money.increment_coin(coin.first, 1);
+                    mon.decrement_coin(coin.first, 1);
+                    coin_count += 1;
+                    b -= coin.first;
+                }
+            }
+        }
+
+        std::cout << "Rest after coins: " << b << std::endl;
     }
     
 
-    
-
-    // for (const auto &bill : mon.get_coins())
-    // {
-    //     if (bill.first == b && bill.second > 0) {
-    //         std::cout << "The bill is present!!\n"; 
-    //         std::cout << bill.first << "--" << bill.second << std::endl;
-    //         recive_money.increment_bill(bill.first, 1);
-    //         mon.decrement_bill(bill.first, 1);
-
-    //        std::cout << "Updated ATM bills:\n";
-           
-    //         for (const auto &updated_bill : mon.get_bills()) {
-    //             std::cout << "Denomination: " << updated_bill.first 
-    //                       << ", Count: " << updated_bill.second << '\n';
-    //         }
-
-    //         break;
-    //     }
-        
-       
-    // }
-
-    // std::cout << " Input coins: ";
-    // std::cin >> c;
+    // TODO if b != 0 do exception!!
 
     std::cout << "Recive your cash \n" << recive_money 
     << std::endl;

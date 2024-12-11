@@ -25,11 +25,13 @@ public:
     // інкремент курюр, монет
     void increment_bill(int nominal, int count);
     void decrement_bill(int nominal, int count);
+    void increment_coin(int nominal, int count);
+    void decrement_coin(int nominal, int count);
 
-    
     int totalAmount() const;
 
     std::map<int, int> get_bills() const;
+    std::map<int, int> get_coins() const;
 
         TMoney convertToTMoney(int amount);
     // Operator overloads

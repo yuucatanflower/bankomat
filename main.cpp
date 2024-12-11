@@ -143,7 +143,7 @@ int main()
 
      TMoney moneytest({{500, 1}, {100, 1}}, {{25, 2} });
     TMoney moneytest2({{500, 1}, {100, 1}}, {{25, 2}});
-    TMoney moneytest3({{1000, 4}, {500, 6},{100,1},{200,10},{50,5}}, {{25, 2}});
+    TMoney moneytest3({{1000, 4}, {500, 6},{100,1},{200,10},{50,5}}, {{25, 200}, {50, 100}, {10, 222}, {5, 111}, {2, 999}, {1, 3333}});
 
     cout << "moneytest == moneytest2: " << (moneytest == moneytest2 ? "true" : "false") << endl;
 
@@ -168,11 +168,18 @@ int main()
 
 try{
     b5.get_cash();
+    
 }
 catch (const exception &e)
 {
     std::cerr << e.what() << std::endl;
 }
-    cout << "Babay!" << std::endl;
-    return 0;
+
+cout << b5 << endl;
+
+
+//TODO поповнення банкомату !!
+            cout
+     << "Babay!" << std::endl;
+return 0;
 }
