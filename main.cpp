@@ -164,7 +164,7 @@ int main()
     TBankomat b4("19929", moneytest2, 1,moneytest2.totalAmount() );
     TBankomat b5("77777", moneytest3);
 
-    cout<< ebank << endl << b1 << endl << b2 << endl << b3 << endl << b4 << b5 << endl;
+    cout<< "b5" << endl<< b5 << endl;
 
 try{
     b5.get_cash();
@@ -175,10 +175,22 @@ catch (const exception &e)
     std::cerr << e.what() << std::endl;
 }
 
-cout << b5 << endl;
+
+
+
+try{
+    b5.load_cash(moneytest);
+    
+}
+catch (const exception &e)
+{
+    std::cerr << e.what() << std::endl;
+}
 
 
 //TODO поповнення банкомату !!
+
+
             cout
      << "Babay!" << std::endl;
 return 0;

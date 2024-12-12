@@ -61,8 +61,13 @@ void TBankomat::get_cash(){
     std::cin >> des_am;
 
     b = des_am * 100;
+
+     if (des_am <= 0) {
+        throw runtime_error("Enter a positive amount");
+    }
+
     if (b > mon.totalAmount()){
-        throw runtime_error("Too much");
+        throw runtime_error("Insufficient funds in the ATM");
     }
 
     while (recive_money.totalAmount() < b)
@@ -81,6 +86,19 @@ void TBankomat::get_cash(){
 
                 }
             }
+
+        if (b != 0) {
+    for (const auto& [value, count] : recive_money.get_bills()) {
+        mon.increment_bill(value, count);
+    }
+    for (const auto& [value, count] : recive_money.get_coins()) {
+        mon.increment_coin(value, count);
+    }
+    throw std::runtime_error("Cannot dispense the exact amount"); 
+}
+
+std::cout<<"Recive your cash \n" << recive_money << endl;
+    }
         
 
 
@@ -111,9 +129,8 @@ void TBankomat::get_cash(){
 
     // TODO if b != 0 do exception!!
 
-    std::cout << "Recive your cash \n" << recive_money 
-    << std::endl;
-}
+   
+
 
     // withdraw tmoney tmoney
     void TBankomat::withdraw(TMoney &balance, TMoney &withdraw_amount)
@@ -133,6 +150,17 @@ void TBankomat::withdraw(TMoney& balance, int withdr_am) {
 
     withdraw(balance, withdraw_amount_tmoney);
 }
+
+void TBankomat::load_cash(TMoney& load){
+ cout<< "Loading cash: " << load.totalAmount()/100<<"."<<load.totalAmount()%100<<endl;
+    if(load.totalAmount()<=0){
+        throw runtime_error("Enter a positive amount");
+    }
+
+    mon = mon + load;
+    
+    cout<<"Money Available: " << mon << endl; 
+};
 
 // Output operator
 ostream& operator<<(ostream& o ,const TBankomat& bankomat){ o<<"ID: " << bankomat.id<< endl ; 

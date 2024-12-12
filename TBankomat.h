@@ -28,7 +28,7 @@ public:
     void set_current(TMoney setmon);
 
     void get_cash();
-
+    void load_cash(TMoney& load);
     void withdraw(TMoney& balance, TMoney& withdraw_amount);
     void withdraw(TMoney& balance, int withdr_am);
     // Convert current_sum to TMoney
